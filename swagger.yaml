@@ -125,6 +125,9 @@ securityDefinitions:
 definitions:
   User:
     properties:
+      username:
+        type: string
+        description: username of user
       email:
         type: string
         description: email of user
@@ -133,15 +136,12 @@ definitions:
         description: password of the user
   Product:
     properties:
-      name:
+      appname:
         type: string
-        description: product name
-      price:
-        type: number
-        description: product price
-      brand:
+        description: app name
+      appdescription:
         type: string
-        description: product brand
+        description: app description
   ApiResponse:
     type: object
     properties:

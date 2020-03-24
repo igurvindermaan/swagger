@@ -3,21 +3,20 @@ const constants = require('../constants/index');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-module.exports.signup = async ({email,password}) => {
+module.exports.signup = async ({username,email,password}) => {
     try{
       const user = await userModel.findOne({email});
       if (user) {
         throw new Error(constants.userMessage.DUPLICATE_EMAIL)
       }
       password = await bcrypt.hash(password, 12);
-      const newUser = new userModel({email,password});
+      const newUser = new userModel({username,email,password});
       let result = await newUser.save();
       return result;
     }catch (error){
         console.log('something went wrong: Service: signup', error)
         throw new Error(error)
     }   
-
 }
 
 module.exports.login = async ({email,password}) => {
@@ -39,3 +38,4 @@ module.exports.login = async ({email,password}) => {
         throw new Error(error)
     }   
 }
+
